@@ -8,19 +8,63 @@
 
 import UIKit
 
+let kREACHABLEWITHWIFI = "ReachableWithWIFI"
+let kNOTREACHABLE = "NotReachable"
+let kREACABLEWITHWWAN = "ReachableWithWWAN"
+
+var reachability: Reachability?
+var reachabilityStatus = kREACHABLEWITHWIFI
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
+    var internetReach: Reachability?
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(AppDelegate.reachabilityChanged(_:)), name: kReachabilityChangedNotification, object: nil)
+        
+        internetReach = Reachability.reachabilityForInternetConnection()
+        internetReach?.startNotifier()
+        if internetReach != nil {
+            self.statusChangedWithReachability(internetReach!)
+        }
+        
         return true
+    }
+    
+    func reachabilityChanged(notification: NSNotification) {
+        print("Reachability Status Changed")
+        reachability = notification.object as? Reachability
+        self.statusChangedWithReachability(reachability!)
+    }
+    
+    func statusChangedWithReachability(currentReachabilityStatus: Reachability) {
+        
+        let networkStatus: NetworkStatus = currentReachabilityStatus.currentReachabilityStatus()
+        //let statusString: String = ""
+        
+        print("Status value: \(networkStatus.rawValue)")
+        
+        if networkStatus.rawValue == NotReachable.rawValue {
+            print("Network not Reachable")
+            reachabilityStatus = kNOTREACHABLE
+        } else if networkStatus.rawValue == ReachableViaWiFi.rawValue {
+            print("Reachable via WIFI")
+            reachabilityStatus = kREACHABLEWITHWIFI
+        } else {
+            print("Reachable via WWAN")
+            reachabilityStatus = kREACABLEWITHWWAN
+        }
+        
+        NSNotificationCenter.defaultCenter().postNotificationName("ReachStatusChanged", object: nil)
+        
     }
 
     func applicationWillResignActive(application: UIApplication) {
-        // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
+        // Sent when the application is about to move from active to inactive sta   te. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
     }
 

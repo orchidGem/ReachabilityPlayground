@@ -13,6 +13,7 @@
 		ADD0C6141CEA2BBF007FC274 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ADD0C6131CEA2BBF007FC274 /* Assets.xcassets */; };
 		ADD0C6171CEA2BBF007FC274 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ADD0C6151CEA2BBF007FC274 /* LaunchScreen.storyboard */; };
 		ADD0C6221CEA2BBF007FC274 /* ReachabilityPlaygroundTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADD0C6211CEA2BBF007FC274 /* ReachabilityPlaygroundTests.swift */; };
+		ADD0C62F1CEA3C20007FC274 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD0C62E1CEA3C20007FC274 /* Reachability.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +37,9 @@
 		ADD0C61D1CEA2BBF007FC274 /* ReachabilityPlaygroundTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ReachabilityPlaygroundTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		ADD0C6211CEA2BBF007FC274 /* ReachabilityPlaygroundTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReachabilityPlaygroundTests.swift; sourceTree = "<group>"; };
 		ADD0C6231CEA2BBF007FC274 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		ADD0C62C1CEA3C1F007FC274 /* ReachabilityPlayground-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ReachabilityPlayground-Bridging-Header.h"; sourceTree = "<group>"; };
+		ADD0C62D1CEA3C20007FC274 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Reachability.h; path = ../../../../../Downloads/Reachability/Reachability/Reachability.h; sourceTree = "<group>"; };
+		ADD0C62E1CEA3C20007FC274 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Reachability.m; path = ../../../../../Downloads/Reachability/Reachability/Reachability.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,11 +82,14 @@
 			isa = PBXGroup;
 			children = (
 				ADD0C60C1CEA2BBF007FC274 /* AppDelegate.swift */,
+				ADD0C62D1CEA3C20007FC274 /* Reachability.h */,
+				ADD0C62E1CEA3C20007FC274 /* Reachability.m */,
 				ADD0C60E1CEA2BBF007FC274 /* ViewController.swift */,
 				ADD0C6101CEA2BBF007FC274 /* Main.storyboard */,
 				ADD0C6131CEA2BBF007FC274 /* Assets.xcassets */,
 				ADD0C6151CEA2BBF007FC274 /* LaunchScreen.storyboard */,
 				ADD0C6181CEA2BBF007FC274 /* Info.plist */,
+				ADD0C62C1CEA3C1F007FC274 /* ReachabilityPlayground-Bridging-Header.h */,
 			);
 			path = ReachabilityPlayground;
 			sourceTree = "<group>";
@@ -198,6 +205,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				ADD0C60F1CEA2BBF007FC274 /* ViewController.swift in Sources */,
+				ADD0C62F1CEA3C20007FC274 /* Reachability.m in Sources */,
 				ADD0C60D1CEA2BBF007FC274 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -329,10 +337,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = ReachabilityPlayground/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ivieinc.ReachabilityPlayground;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "ReachabilityPlayground/ReachabilityPlayground-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -340,10 +351,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = ReachabilityPlayground/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ivieinc.ReachabilityPlayground;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "ReachabilityPlayground/ReachabilityPlayground-Bridging-Header.h";
 			};
 			name = Release;
 		};
